@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-port = 5500;
+port = process.env.PORT;
 
 const cors = require("cors");
-app.use(cors())
+app.use(cors());
 //  db connection
 const dbConnection = require("./db/dbConfig.js");
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 
 // questions routes middleware
-const questionsRoutes = require("./routes/questionRoutes.js")
+const questionsRoutes = require("./routes/questionRoutes.js");
 const authMiddleware = require("./middleware/authMiddleware.js");
 // questions routes middleware??
 app.use("/api/questions", authMiddleware, questionsRoutes);
@@ -26,13 +26,11 @@ app.use("/api/questions", authMiddleware, questionsRoutes);
 async function start() {
   try {
     const result = await dbConnection.execute('select "test"');
-    console.log('database connection established');
+    console.log("database connection established");
     await app.listen(port);
-    console.log('listening on port ' + port);
-
+    console.log("listening on port " + port);
   } catch (err) {
     console.log(err.message);
   }
 }
 start();
-
