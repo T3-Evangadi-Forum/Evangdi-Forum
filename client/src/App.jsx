@@ -12,6 +12,8 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginForm from "./pages/LoginForm/LoginForm";
 import RgisterForm from "./pages/RgisterForm/RgisterForm";
+import PostQuestionPage from "./components/postQestionPage/PostQuestionPage";
+import PostAnswerPage from "./components/postAnswerPage/PostAnswerPage";
 
 const AuthWrapper = ({ setAuth }) => {
   const navigate = useNavigate();
@@ -75,7 +77,7 @@ function App() {
     <Router>
       <Header />
       {/* AuthWrapper handles token validation on page load */}
-      <AuthWrapper setAuth={setIsAuthenticated} />
+      {/* <AuthWrapper setAuth={setIsAuthenticated} /> */}
 
       <Routes>
         {/* Public routes */}
@@ -90,6 +92,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/ask" element={<PostQuestionPage />} />
+        <Route path="/home" element={<PostAnswerPage />} />
       </Routes>
       <Footer />
     </Router>

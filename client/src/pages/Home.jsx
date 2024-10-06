@@ -1,7 +1,11 @@
 import React from "react";
-
+import PostQestionPage from "../components/postQestionPage/PostQuestionPage";
 function Home() {
-  return <div style={{ height: "73vh" }}>Home</div>;
+  return (
+    <div>
+      home
+    </div>
+  );
 }
 
 export default Home;
