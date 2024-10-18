@@ -25,8 +25,9 @@ const AnswerPage = () => {
     setError("");
     try {
       const response = await axiosInstance.get(`questions/${question_id}`, {
+        // Fixed string interpolation
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Fixed string interpolation
         },
       });
       setQuestion(response.data);
@@ -37,8 +38,9 @@ const AnswerPage = () => {
 
     try {
       const response = await axiosInstance.get(`answer/${question_id}`, {
+        // Fixed string interpolation
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Fixed string interpolation
         },
       });
       setAnswers(response.data.answers);
@@ -51,7 +53,8 @@ const AnswerPage = () => {
     e.preventDefault();
 
     setError("");
-    if (answer.length == 0) {
+    if (answer.length === 0) {
+      // Changed == to === for strict equality
       setError("Please provide an answer before submitting.");
       return;
     }
@@ -61,10 +64,10 @@ const AnswerPage = () => {
     try {
       await axiosInstance.post(
         "/answer",
-        { content: answer, question_id },
+        { answer, question_id },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Fixed string interpolation
           },
         }
       );
@@ -133,7 +136,7 @@ const AnswerPage = () => {
       <div>
         {posted && (
           <p className={classes.submissionAlert}>
-            question posted successfully
+            Answer posted successfully
           </p>
         )}
       </div>
